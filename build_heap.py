@@ -38,8 +38,8 @@ def main():
     swap, swaps = build_heap(n, data)
     
     print(swap)
-    for swap in swaps:
-        print(swap[0], swap[1])
+    for sw in swaps:
+        print(sw[0], sw[1])
 
 if __name__ == "__main__":
     main()
