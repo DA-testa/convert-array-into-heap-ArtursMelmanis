@@ -14,20 +14,26 @@ def sift_down(i, data, swaps):
         data[i], data[index] = data[index], data[i]
         sift_down(index, data, swaps)
 
-def build_heap(n, data):
+def build_heap(data):
     swaps = []
     n = len(data)
-    for i in range(n // 2, -1, -1):
-        sift_down(i, data, swaps)
-    return len(swaps), swaps
+    for i in range(n // 2 -1, -1, -1):
+        sift_down(data, n, i, swaps)
+    return swaps
 
 def main():
-    n = int(input().strip())
-    data = list(map(int, input().strip().split()))
+    txt = input()
+    if "I" in txt:
+        n = int(input())
+        data = list(map(int, input().split()))
+    if "F" in txt:
+        f = input()
+        with open("tests/" + f, 'r') as file:
+            n = int(file.readline())
+            data = list(map(int, file.readline().split()))
     assert len(data) == n
-
-    swap, swaps = build_heap(n, data)
-    print(swap)
+    swaps = build_heap(data)
+    print(len(swaps))
     for sw in swaps:
         print(sw[0], sw[1])
 
