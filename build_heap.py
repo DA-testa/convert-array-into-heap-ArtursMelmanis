@@ -31,13 +31,26 @@ def RightChild(i):
     return 2 * i
 
 def main():
+    n = input().strip()
+    if not n.isdigit():
+        print("Invalid input")
+        return
     
-    n = int(input())
-    data = list(map(int, input().split()))
-    assert len(data) == n
+    n = int(n)
+    data = input().strip().split()
+    if len(data) != n:
+        print("Invalid input")
+        return
+    
+    try:
+        data = [int(x) for x in data]
+    except ValueError:
+        print("Invalid input")
+        return
+    
     swap, swaps = build_heap(n, data)
-    print(swap)
     
+    print(swap)
     for swap in swaps:
         print(swap[0], swap[1])
 
