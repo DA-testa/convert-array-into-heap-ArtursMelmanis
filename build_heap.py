@@ -12,7 +12,7 @@ def sift_down(i, data, swaps):
     if i != index:
         swaps.append((i, index))
         data[i], data[index] = data[index], data[i]
-        sift_down(index, swap, swaps)
+        sift_down(index, data, swaps)
 
 def build_heap(data):
     swaps = []
