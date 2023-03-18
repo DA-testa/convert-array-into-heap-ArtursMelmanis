@@ -35,10 +35,10 @@ def main():
     data = list(map(int, input().split()))
     assert len(data) == n
 
-    swap_count, swap_list = build_heap(n, data)
+    swap, swaps = build_heap(n, data)
     
-    print(swap_count)
-    for swap in swap_list:
+    print(swap)
+    for swap in swaps:
         print(swap[0], swap[1])
 
 if __name__ == "__main__":
