@@ -1,6 +1,6 @@
 # python3
 
-def sift_down(i, data, swaps):
+def sift_down(data, n, i, swaps):
     n = len(data)
     index = i
     l = 2 * i + 1
