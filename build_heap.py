@@ -1,28 +1,35 @@
 # python3
 
+from math import floor
+
 def build_heap(n, data):
     swap = 0
     swaps = []
     size = n - 1
-    for i in range((n // 2), -1, -1, -1):
-        k = i
-        v = data[k]
-        heap = False
-        while not heap and 2 * k + 1 <= size:
-            j = 2 * k + 1
-            if j < size and data[j] > data[j + 1]:
-                j += 1
-            if v <= data[j]:
-                heap = True
-            else:
-                data[k] = data[j]
-                swap += 1
-                swaps.append((k, j))
-                k = j
-            data[k] = v
-        
+    for i in range(floor(n/2), -1, -1):
+       swap, swaps, data = sift_down(i, size, data, swap, swaps)
     return swap, swaps
     
+def sift_down(i, size, data, swap, swaps):
+    index = i
+    l = LeftChild(i + 1)
+    if l <= size and data[l] < data[index]:
+        index = l
+    r = RightChild(i + 1)
+    if r <= size and data[r] < data[index]:
+        index = r
+    if i != index:
+        data[i], data[index] = data[index], data[i]
+        swap += 1
+        swaps.append((i, index))
+        swap, swaps, data = sift_down(index, size, data, swap, swaps)
+    return swap, swaps, data
+
+def LeftChild(i):
+    return 2 * i - 1
+def RightChild(i):
+    return 2 * i
+
 def main():
     
     n = int(input())
